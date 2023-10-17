@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Overview of all finished projects</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Project id</th>
+        <th>Project name</th>
+    </tr>
+    <tr th:each="book : ${allFinishedProjects}">
+        <td th:text="${book.projectId}"></td>
+        <td th:text="${book.projectName}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
