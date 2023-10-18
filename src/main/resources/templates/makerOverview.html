@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Overview of makers</title>
+</head>
+<body>
+
+<h1>Overview of all makers in the Makerspot</h1>
+
+<table>
+    <tr>
+        <th>First name</th>
+        <th>Infix name</th>
+        <th>Last name</th>
+    </tr>
+    <tr th:each="maker : ${allMakers}">
+        <td th:text="${maker.firstName}"></td>
+        <td th:text="${maker.infixName}"></td>
+        <td th:text="${maker.lastName}"></td>
+    </tr>
+    <form th:action="@{/maker/new}" method="post" th:object="${newMaker}">
+        <tr>
+            <td><input type="tekst" th:field="*{firstName}"></td>
+            <td><input type="tekst" th:field="*{infixName}"></td>
+            <td><input type="tekst" th:field="*{lastName}"></td>
+            <td><input type="submit" value="Save new maker"></td>
+        </tr>
+    </form>
+
+</table>
+
+</body>
+</html>
