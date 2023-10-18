@@ -10,10 +10,12 @@
     <tr>
         <th>Project id</th>
         <th>Project name</th>
+        <th>Finish date</th>
     </tr>
     <tr th:each="book : ${allFinishedProjects}">
         <td th:text="${book.projectId}"></td>
         <td th:text="${book.projectName}"></td>
+        <td th:text="${book.finishDate}"></td>
     </tr>
 </table>
 

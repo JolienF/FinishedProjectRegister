@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add your finished project</title>
+</head>
+<body>
+
+<h1>Create a finished project</h1>
+
+<form th:action="@{/finishedProject/new}" method="post" th:object="${finishedProject}">
+    <table>
+        <tr>
+            <th>Project Name</th>
+            <th>Finish Date</th>
+        </tr>
+        <tr>
+            <td><input type="text" th:field="*{projectName}" /></td>
+            <td><input type="text" th:field="*{finishDate}" /></td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save project" />
+</form>
+
+</body>
+</html>
