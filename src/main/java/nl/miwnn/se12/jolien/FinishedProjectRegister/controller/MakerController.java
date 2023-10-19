@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 /**
  * @author Jolien Franke <j.franke@st.hanze.nl>
  * Handles the makers (haha like that's possible)
@@ -35,6 +36,8 @@ public class MakerController {
     private String saveOrUpdateMaker(@ModelAttribute("newMaker") Maker maker, BindingResult result) {
         if (!(result.hasErrors())) {
             makerRepository.save(maker);
+        } else {
+            System.err.println(result.getAllErrors());
         }
 
         return "redirect:/maker/all";

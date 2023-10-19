@@ -1,8 +1,12 @@
 package nl.miwnn.se12.jolien.FinishedProjectRegister.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 /**
@@ -11,6 +15,8 @@ import javax.persistence.Id;
  */
 
 @Entity
+@Getter
+@Setter
 public class FinishedProject {
 
     @Id @GeneratedValue
@@ -20,27 +26,6 @@ public class FinishedProject {
 
     private String finishDate;
 
-    public Long getProjectId() {
-        return projectId;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public String getFinishDate() {
-        return finishDate;
-    }
-
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public void setFinishDate(String finishDate) {
-        this.finishDate = finishDate;
-    }
+    @ManyToOne
+    private Maker maker;
 }

@@ -1,13 +1,19 @@
 package nl.miwnn.se12.jolien.FinishedProjectRegister.controller;
 
+import lombok.RequiredArgsConstructor;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.model.FinishedProject;
+import nl.miwnn.se12.jolien.FinishedProjectRegister.model.Maker;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.repository.FinishedProjectRepository;
+import nl.miwnn.se12.jolien.FinishedProjectRegister.repository.MakerRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 /**
  * @author Jolien Franke <j.franke@st.hanze.nl>
@@ -15,13 +21,11 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 
 @Controller
+@RequiredArgsConstructor
 public class FinishedProjectController {
 
     private final FinishedProjectRepository finishedProjectRepository;
-
-    public FinishedProjectController(FinishedProjectRepository finishedProjectRepository) {
-        this.finishedProjectRepository = finishedProjectRepository;
-    }
+    private final MakerRepository makerRepository;
 
     //    Get vraagt de pagina op
     @GetMapping("/")
