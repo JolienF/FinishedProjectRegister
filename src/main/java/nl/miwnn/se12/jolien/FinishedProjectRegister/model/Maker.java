@@ -53,4 +53,14 @@ public class Maker {
 
         return displayName;
     }
+
+    public String getAllFinishedProjectsDisplayString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (FinishedProject finishedProject : finishedProjects) {
+            stringBuilder.append(finishedProject.getProjectName()).append(", ");
+        }
+
+        return stringBuilder.toString();
+    }
 }

@@ -11,12 +11,20 @@
 <form th:action="@{/finishedProject/new}" method="post" th:object="${finishedProject}">
     <table>
         <tr>
-            <th>Project Name</th>
-            <th>Finish Date</th>
+            <th><label for="projectNameField">Project Name</label></th>
+            <th><label for="finishDateField">Finish Date</label></th>
+            <th><label for="makerField">Maker</label></th>
         </tr>
         <tr>
-            <td><input type="text" th:field="*{projectName}" /></td>
-            <td><input type="text" th:field="*{finishDate}" /></td>
+            <td><input type="text" id="projectNameField" th:field="*{projectName}" /></td>
+            <td><input type="text" id="finishDateField" th:field="*{finishDate}" /></td>
+            <td><select id="makerField" th:field="*{maker}">
+                    <option th:each="maker : ${allMakers}"
+                            th:value="${maker.makerId}"
+                            th:text="${maker.displayName}">
+                    </option>
+                </select>
+            </td>
         </tr>
     </table>
 
