@@ -20,11 +20,13 @@ public class Maker {
     @Id @GeneratedValue
     private Long makerId;
 
-    @Column(nullable = false) private String firstName;
+    @Column(nullable = false)
+    private String firstName;
     private String infixName;
-    @Column(nullable = false) private String lastName;
+    @Column(nullable = false)
+    private String lastName;
 
-    @OneToMany(mappedBy = "finishedProject", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL)
     private Set<FinishedProject> finishedProjects;
 
     public Maker(String firstName, String infixName, String lastName) {
@@ -37,7 +39,6 @@ public class Maker {
         this(firstName, null, lastName);
     }
 
-    //TODO waarom hoef je hier niets te initializen?
     public Maker() {
     }
 

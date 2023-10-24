@@ -10,20 +10,22 @@
 
 <table>
     <tr>
-        <th>First name</th>
-        <th>Infix name</th>
-        <th>Last name</th>
+        <th><label for="firstNameField">First name</label></th>
+        <th><label for="infixNameField">Infix name</label></th>
+        <th><label for="lastNameField">Last name</label></th>
     </tr>
+
     <tr th:each="maker : ${allMakers}">
         <td th:text="${maker.firstName}"></td>
         <td th:text="${maker.infixName}"></td>
         <td th:text="${maker.lastName}"></td>
     </tr>
+
     <form th:action="@{/maker/new}" method="post" th:object="${newMaker}">
         <tr>
-            <td><input type="tekst" th:field="*{firstName}"></td>
-            <td><input type="tekst" th:field="*{infixName}"></td>
-            <td><input type="tekst" th:field="*{lastName}"></td>
+            <td><input id="firstNameField" type="text" th:field="*{firstName}"></td>
+            <td><input id="infixNameField" type="text" th:field="*{infixName}"></td>
+            <td><input id="lastNameField" type="text" th:field="*{lastName}"></td>
             <td><input type="submit" value="Save new maker"></td>
         </tr>
     </form>
