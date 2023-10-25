@@ -1,16 +1,14 @@
 package nl.miwnn.se12.jolien.FinishedProjectRegister.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.model.Maker;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.repository.MakerRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 /**
@@ -41,5 +39,37 @@ public class MakerController {
         }
 
         return "redirect:/maker/all";
+    }
+
+    //TODO methode schrijven om dubbele code eruit te halen
+    @GetMapping("/detail/{firstName}/{lastName}")
+    private String showMakerDetails(@PathVariable("firstName") String firstName,
+                                    @PathVariable("lastName") String lastName,
+                                    Model model) {
+        Optional<Maker> optionalMaker = makerRepository.findMakerByFirstNameAndInfixNameAndLastName(
+                firstName, "", lastName);
+        if (optionalMaker.isEmpty()) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("makerToBeShown", optionalMaker.get());
+
+        return "makerDetail";
+    }
+
+    @GetMapping("/detail/{firstName}/{infixName}/{lastName}")
+    private String showMakerDetails(@PathVariable("firstName") String firstName,
+                                    @PathVariable("infixName") String infixName,
+                                    @PathVariable("lastName") String lastName,
+                                    Model model) {
+        Optional<Maker> optionalMaker = makerRepository.findMakerByFirstNameAndInfixNameAndLastName(
+                firstName, infixName, lastName);
+        if (optionalMaker.isEmpty()) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("makerToBeShown", optionalMaker.get());
+
+        return "makerDetail";
     }
 }

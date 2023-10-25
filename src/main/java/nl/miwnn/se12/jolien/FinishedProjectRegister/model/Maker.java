@@ -15,6 +15,8 @@ import java.util.Set;
 
 @Entity
 @Getter @Setter
+@Table( uniqueConstraints=
+        @UniqueConstraint(columnNames = {"firstName", "infixName", "lastName"}))
 public class Maker {
 
     @Id @GeneratedValue
