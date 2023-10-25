@@ -15,8 +15,12 @@
     <tr th:each="project : ${makerToBeShown.getFinishedProjects()}">
         <td th:text="${project.projectName}"></td>
         <td th:text="${project.finishDate}"></td>
+<!--        <input th:type="hidden" th:field="*{project.projectId}">-->
+<!--        <td><a th:href="@{finishedProject/edit/{projectName}(projectname = ${projectName})}" >Edit</a></td>-->
     </tr>
 </table>
+
+<a th:href="@{/maker/edit/{email}(email=${makerToBeShown.getMakerEmail()})}">Edit</a>
 
 <a th:href="@{/maker/all}">See all makers</a>
 

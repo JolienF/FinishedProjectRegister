@@ -2,7 +2,6 @@ package nl.miwnn.se12.jolien.FinishedProjectRegister.controller;
 
 import lombok.RequiredArgsConstructor;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.model.FinishedProject;
-import nl.miwnn.se12.jolien.FinishedProjectRegister.model.Maker;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.repository.FinishedProjectRepository;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.repository.MakerRepository;
 import org.springframework.stereotype.Controller;
@@ -24,8 +23,7 @@ public class FinishedProjectController {
     private final FinishedProjectRepository finishedProjectRepository;
     private final MakerRepository makerRepository;
 
-    //    Get vraagt de pagina op
-    @GetMapping({"/", "/finishedProjects/overview"})
+    @GetMapping({"/", "/finishedProject/overview"})
     private String showFinishedProjectOverview(Model model) {
         model.addAttribute("allFinishedProjects", finishedProjectRepository.findAll());
 
@@ -37,12 +35,12 @@ public class FinishedProjectController {
         model.addAttribute("finishedProject", new FinishedProject());
         model.addAttribute("allMakers", makerRepository.findAll());
 
-        return "finishedProjectFrom";
+        return "finishedProjectForm";
     }
 
     //TODO niet vinden op unieke project, maar via maker en dan unieke projectnaam
     @GetMapping("/finishedProject/edit/{projectName}")
-    private String showEditBookForm(@PathVariable("projectName") String projectName, Model model) {
+    private String showEditFinishedProjectForm(@PathVariable("projectName") String projectName, Model model) {
         Optional<FinishedProject> optionalFinishedProject =
                 finishedProjectRepository.findFinishedProjectByProjectName(projectName);
 

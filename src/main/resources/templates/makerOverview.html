@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1>Overview of all makers in the Makerspot</h1>
+<h1>Makers in the Makerspot</h1>
 
 <table>
     <tr>
@@ -20,10 +20,15 @@
         <td th:text="${maker.firstName}"></td>
         <td th:text="${maker.infixName}"></td>
         <td th:text="${maker.lastName}"></td>
-        <td><a th:href="@{/maker/detail/{email}(email=${maker.makerEmail})}"th:text="${maker.getMakerEmail()}"></a></td>
+        <td><a th:href="@{/maker/detail/{email}(email=${maker.makerEmail})}" th:text="${maker.getMakerEmail()}">
+            </a>
+        </td>
+        <td><a th:href="@{edit/{makerEmail}(makerEmail=${maker.makerEmail})}">Edit maker</a></td>
+
     </tr>
 
     <form th:action="@{/maker/new}" method="post" th:object="${newMaker}">
+        <input th:type="hidden" th:field="*{makerId}">
         <tr>
             <td><input id="firstNameField" type="text" th:field="*{firstName}"></td>
             <td><input id="infixNameField" type="text" th:field="*{infixName}"></td>

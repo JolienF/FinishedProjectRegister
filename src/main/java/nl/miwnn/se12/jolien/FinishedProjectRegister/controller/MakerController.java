@@ -53,4 +53,16 @@ public class MakerController {
 
         return "makerDetail";
     }
+
+    @GetMapping("/edit/{makerEmail}")
+    private String showEditMakerForm(@PathVariable("makerEmail") String makerEmail, Model model) {
+        Optional<Maker> optionalMaker = makerRepository.findMakerByMakerEmail(makerEmail);
+
+        if (optionalMaker.isEmpty()) {
+            return "redirect:/maker/all";
+        }
+
+        model.addAttribute("newMaker", optionalMaker.get());
+        return "makerOverview";
+    }
 }

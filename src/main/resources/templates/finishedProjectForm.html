@@ -6,9 +6,10 @@
 </head>
 <body>
 
-<h1>Create a finished project</h1>
+<h1>Create or edit a finished project</h1>
 
 <form th:action="@{/finishedProject/new}" method="post" th:object="${finishedProject}">
+    <input th:type="hidden" th:field="*{projectId}">
     <table>
         <tr>
             <th><label for="projectNameField">Project Name</label></th>
