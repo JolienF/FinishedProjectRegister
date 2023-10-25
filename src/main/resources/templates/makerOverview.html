@@ -13,21 +13,14 @@
         <th><label for="firstNameField">First name</label></th>
         <th><label for="infixNameField">Infix name</label></th>
         <th><label for="lastNameField">Last name</label></th>
-
+        <th><label for="makerEmailField">E-mail</label></th>
     </tr>
 
     <tr th:each="maker : ${allMakers}">
-        <td><a th:if="${maker.infixName.isEmpty()}"
-               th:href="@{/maker/detail/{firstName}/{lastName}
-               (firstName=${maker.getFirstName()}, lastName=${maker.getLastName()})}"
-                th:text="${maker.getDisplayName()}"></a></td>
-        <td><a th:unless="${maker.infixName.isEmpty()}"
-               th:href="@{/maker/detail/{firstName}/{infixName}/{lastName}
-               (firstName=${maker.getFirstName()}, infixName=${maker.getInfixName()} lastName=${maker.getLastName()})}"
-               th:text="${maker.getDisplayName()}"></a></td>
         <td th:text="${maker.firstName}"></td>
         <td th:text="${maker.infixName}"></td>
         <td th:text="${maker.lastName}"></td>
+        <td><a th:href="@{/maker/detail/{email}(email=${maker.makerEmail})}"th:text="${maker.getMakerEmail()}"></a></td>
     </tr>
 
     <form th:action="@{/maker/new}" method="post" th:object="${newMaker}">
@@ -35,6 +28,7 @@
             <td><input id="firstNameField" type="text" th:field="*{firstName}"></td>
             <td><input id="infixNameField" type="text" th:field="*{infixName}"></td>
             <td><input id="lastNameField" type="text" th:field="*{lastName}"></td>
+            <td><input id="makerEmailField" type="text" th:field="*{makerEmail}"></td>
             <td><input type="submit" value="Save new maker"></td>
         </tr>
     </form>

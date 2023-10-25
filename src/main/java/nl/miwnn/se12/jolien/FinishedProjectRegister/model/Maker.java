@@ -15,13 +15,13 @@ import java.util.Set;
 
 @Entity
 @Getter @Setter
-@Table( uniqueConstraints=
-        @UniqueConstraint(columnNames = {"firstName", "infixName", "lastName"}))
 public class Maker {
 
     @Id @GeneratedValue
     private Long makerId;
 
+    @Column(nullable = false, unique = true)
+    private String makerEmail;
     @Column(nullable = false)
     private String firstName;
     private String infixName;
@@ -31,14 +31,15 @@ public class Maker {
     @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL)
     private Set<FinishedProject> finishedProjects;
 
-    public Maker(String firstName, String infixName, String lastName) {
+    public Maker(String firstName, String infixName, String lastName, String makerEmail) {
         this.firstName = firstName;
         this.infixName = infixName;
         this.lastName = lastName;
+        this.makerEmail = makerEmail;
     }
 
-    public Maker(String firstName, String lastName) {
-        this(firstName, null, lastName);
+    public Maker(String firstName, String lastName, String makerEmail) {
+        this(firstName, null, lastName, makerEmail);
     }
 
     public Maker() {
@@ -47,7 +48,7 @@ public class Maker {
     public String getDisplayName() {
         String displayName = firstName + " ";
 
-        if (infixName != null && (!infixName.equals(""))) {
+        if (infixName != null && (!infixName.isEmpty())) {
             displayName += infixName + " ";
         }
 

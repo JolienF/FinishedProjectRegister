@@ -18,7 +18,7 @@ public class FinishedProject {
     @Id @GeneratedValue
     private Long projectId;
     // TODO deze uniek maken per maker
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String projectName;
     private String finishDate;
 

@@ -12,11 +12,13 @@
         <th>Project name</th>
         <th>Finish date</th>
     </tr>
-    <tr>
-        <td>hier komt project naam</td>
-        <td>hier komt project datum</td>
+    <tr th:each="project : ${makerToBeShown.getFinishedProjects()}">
+        <td th:text="${project.projectName}"></td>
+        <td th:text="${project.finishDate}"></td>
     </tr>
-
 </table>
+
+<a th:href="@{/maker/all}">See all makers</a>
+
 </body>
 </html>

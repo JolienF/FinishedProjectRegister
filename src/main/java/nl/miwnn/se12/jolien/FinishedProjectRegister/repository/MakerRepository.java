@@ -9,4 +9,6 @@ public interface MakerRepository extends JpaRepository<Maker, Long> {
     // displayName MOET unique zijn
 //    Optional<Maker> findMakerByDisplayName(String displayName);
     Optional<Maker> findMakerByFirstNameAndInfixNameAndLastName(String firstName, String infixName, String lastname);
+
+    Optional<Maker> findMakerByMakerEmail(String makerEmail);
 }

@@ -41,29 +41,10 @@ public class MakerController {
         return "redirect:/maker/all";
     }
 
-    //TODO methode schrijven om dubbele code eruit te halen
-    @GetMapping("/detail/{firstName}/{lastName}")
-    private String showMakerDetails(@PathVariable("firstName") String firstName,
-                                    @PathVariable("lastName") String lastName,
+    @GetMapping("/detail/{makerEmail}")
+    private String showMakerDetails(@PathVariable("makerEmail") String makerEmail,
                                     Model model) {
-        Optional<Maker> optionalMaker = makerRepository.findMakerByFirstNameAndInfixNameAndLastName(
-                firstName, "", lastName);
-        if (optionalMaker.isEmpty()) {
-            return "redirect:/";
-        }
-
-        model.addAttribute("makerToBeShown", optionalMaker.get());
-
-        return "makerDetail";
-    }
-
-    @GetMapping("/detail/{firstName}/{infixName}/{lastName}")
-    private String showMakerDetails(@PathVariable("firstName") String firstName,
-                                    @PathVariable("infixName") String infixName,
-                                    @PathVariable("lastName") String lastName,
-                                    Model model) {
-        Optional<Maker> optionalMaker = makerRepository.findMakerByFirstNameAndInfixNameAndLastName(
-                firstName, infixName, lastName);
+        Optional<Maker> optionalMaker = makerRepository.findMakerByMakerEmail(makerEmail);
         if (optionalMaker.isEmpty()) {
             return "redirect:/";
         }

@@ -12,14 +12,14 @@
         <th>Project name</th>
         <th>Finish date</th>
     </tr>
-    <tr th:each="book : ${allFinishedProjects}">
-        <td th:text="${book.projectId}"></td>
-        <td th:text="${book.projectName}"></td>
-        <td th:text="${book.finishDate}"></td>
+    <tr th:each="project : ${allFinishedProjects}">
+        <td th:text="${project.projectId}"></td>
+        <td th:text="${project.projectName}"></td>
+        <td th:text="${project.finishDate}"></td>
     </tr>
 </table>
 
-<a th:href="@{/makers/all}">Add a maker</a>
+<a th:href="@{/maker/all}">Add a maker</a>
 <a th:href="@{/finishedProject/new}">Add a finished project</a>
 
 </body>
