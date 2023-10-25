@@ -17,6 +17,14 @@
     </tr>
 
     <tr th:each="maker : ${allMakers}">
+        <td><a th:if="${maker.infixName.isEmpty()}"
+               th:href="@{/maker/detail/{firstName}/{lastName}
+               (firstName=${maker.getFirstName()}, lastName=${maker.getLastName()})}"
+                th:text="${maker.getDisplayName()}"></a></td>
+        <td><a th:unless="${maker.infixName.isEmpty()}"
+               th:href="@{/maker/detail/{firstName}/{infixName}/{lastName}
+               (firstName=${maker.getFirstName()}, infixName=${maker.getInfixName()} lastName=${maker.getLastName()})}"
+               th:text="${maker.getDisplayName()}"></a></td>
         <td th:text="${maker.firstName}"></td>
         <td th:text="${maker.infixName}"></td>
         <td th:text="${maker.lastName}"></td>
