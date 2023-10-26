@@ -65,4 +65,17 @@ public class MakerController {
         model.addAttribute("newMaker", optionalMaker.get());
         return "makerOverview";
     }
+
+    @GetMapping("delete/{makerEmail}")
+    private String deleteMaker(@PathVariable("makerEmail") String makerEmail) {
+        Optional<Maker> optionalMaker = makerRepository.findMakerByMakerEmail(makerEmail);
+
+        if (optionalMaker.isEmpty()) {
+            return "redirect:/maker/all";
+        }
+
+        makerRepository.delete(optionalMaker.get());
+
+        return "redirect:/maker/all";
+    }
 }

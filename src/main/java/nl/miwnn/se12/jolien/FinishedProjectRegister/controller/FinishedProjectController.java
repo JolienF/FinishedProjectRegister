@@ -54,9 +54,24 @@ public class FinishedProjectController {
         return "finishedProjectForm";
     }
 
+    @GetMapping("/finishedProject/delete/{projectName}")
+    private String deleteFinishedProject(@PathVariable("projectName") String projectName) {
+        Optional<FinishedProject> optionalFinishedProject =
+                finishedProjectRepository.findFinishedProjectByProjectName(projectName);
+
+        if (optionalFinishedProject.isEmpty()) {
+            return "redirect:/finishedProject/overview";
+        }
+
+        finishedProjectRepository.delete(optionalFinishedProject.get());
+
+        return "redirect:/finishedProject/overview";
+    }
+
     @PostMapping("/finishedProject/new")
     private String saveOrUpdateFinishedProject(
             @ModelAttribute("finishedProject") FinishedProject finishedProjectToBeSaved, BindingResult result) {
+
         if ((!result.hasErrors())) {
             finishedProjectRepository.save(finishedProjectToBeSaved);
         } else {

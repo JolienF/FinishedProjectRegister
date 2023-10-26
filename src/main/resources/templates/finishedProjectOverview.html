@@ -21,6 +21,8 @@
         <td th:text="${project.getMaker().makerEmail}"></td>
         <td><a th:href="@{/finishedProject/edit/{projectName}(projectName=${project.getProjectName()})}">
             Edit project</a> </td>
+        <td><a th:href="@{/finishedProject/delete/{projectName}(projectName=${project.getProjectName()})}">
+            Delete project</a></td>
 
     </tr>
 </table>

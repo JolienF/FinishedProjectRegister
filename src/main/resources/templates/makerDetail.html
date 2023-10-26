@@ -19,10 +19,18 @@
 <!--        <td><a th:href="@{finishedProject/edit/{projectName}(projectname = ${projectName})}" >Edit</a></td>-->
     </tr>
 </table>
+<p>
+    <a th:href="@{/maker/edit/{email}(email=${makerToBeShown.makerEmail})}">Edit</a>
+</p>
 
-<a th:href="@{/maker/edit/{email}(email=${makerToBeShown.getMakerEmail()})}">Edit</a>
+<p>
+    <a th:href="@{/maker/delete/{email}(email=${makerToBeShown.makerEmail})}" >Delete</a>
+</p>
 
-<a th:href="@{/maker/all}">See all makers</a>
+<p>
+    <a th:href="@{/maker/all}">See all makers</a>
+</p>
+
 
 </body>
 </html>
