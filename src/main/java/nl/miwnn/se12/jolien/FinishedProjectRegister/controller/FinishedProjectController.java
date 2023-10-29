@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.model.FinishedProject;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.repository.FinishedProjectRepository;
 import nl.miwnn.se12.jolien.FinishedProjectRegister.repository.MakerRepository;
+import nl.miwnn.se12.jolien.FinishedProjectRegister.repository.ToolRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ public class FinishedProjectController {
 
     private final FinishedProjectRepository finishedProjectRepository;
     private final MakerRepository makerRepository;
+    private final ToolRepository toolRepository;
 
     @GetMapping({"/", "/finishedProject/overview"})
     private String showFinishedProjectOverview(Model model) {
@@ -34,6 +36,7 @@ public class FinishedProjectController {
     private String showFinishedProjectFrom(Model model) {
         model.addAttribute("finishedProject", new FinishedProject());
         model.addAttribute("allMakers", makerRepository.findAll());
+        model.addAttribute("allTools", toolRepository.findAll());
 
         return "finishedProjectForm";
     }
@@ -50,6 +53,7 @@ public class FinishedProjectController {
 
         model.addAttribute("finishedProject", optionalFinishedProject.get());
         model.addAttribute("allMakers", makerRepository.findAll());
+        model.addAttribute("allTools", toolRepository.findAll());
 
         return "finishedProjectForm";
     }

@@ -1,5 +1,6 @@
 package nl.miwnn.se12.jolien.FinishedProjectRegister.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +14,17 @@ import javax.persistence.Id;
  */
 @Entity
 @Getter @Setter
+@AllArgsConstructor
 public class Tool {
     @Id @GeneratedValue
     private Long toolId;
+
     private String toolName;
 
+    public Tool(String toolName) {
+        this.toolName = toolName;
+    }
+
+    public Tool() {
+    }
 }

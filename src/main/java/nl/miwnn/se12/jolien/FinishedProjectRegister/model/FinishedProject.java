@@ -18,10 +18,12 @@ import java.util.Set;
 @AllArgsConstructor
 public class FinishedProject {
 
-    public FinishedProject(String projectName, String finishDate, Maker maker) {
+    public FinishedProject(String projectName, String finishDate, Maker maker, Set<Tool> tools) {
         this.projectName = projectName;
         this.finishDate = finishDate;
         this.maker = maker;
+        this.tools = tools;
+
     }
 
     public FinishedProject() {

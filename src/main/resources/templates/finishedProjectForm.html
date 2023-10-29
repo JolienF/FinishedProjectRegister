@@ -15,6 +15,7 @@
             <th><label for="projectNameField">Project Name</label></th>
             <th><label for="finishDateField">Finish Date</label></th>
             <th><label for="makerField">Maker</label></th>
+            <th><label for="toolField">Tools</label></th>
         </tr>
         <tr>
             <td><input type="text" id="projectNameField" th:field="*{projectName}" /></td>
@@ -24,6 +25,14 @@
                             th:value="${maker.makerId}"
                             th:text="${maker.displayName}">
                         <!-- displayName is niet unique, dus email zou hier beter zijn -->
+                    </option>
+                </select>
+            </td>
+            <td>
+                <select id="toolField" th:field="*{tools}" multiple>
+                    <option th:each="tool : ${allTools}"
+                            th:value="${tool.toolId}"
+                            th:text="${tool.toolName}">
                     </option>
                 </select>
             </td>

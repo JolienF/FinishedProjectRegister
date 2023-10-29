@@ -13,12 +13,14 @@
         <th>Project name</th>
         <th>Finish date</th>
         <th>Maker name</th>
+        <th>Used tool</th>
     </tr>
     <tr th:each="project : ${allFinishedProjects}">
         <td th:text="${project.projectId}"></td>
         <td th:text="${project.projectName}"></td>
         <td th:text="${project.finishDate}"></td>
         <td th:text="${project.getMaker().makerEmail}"></td>
+        <td th:text="${project.getAllToolsDisplayString()}"></td>
         <td><a th:href="@{/finishedProject/edit/{projectName}(projectName=${project.getProjectName()})}">
             Edit project</a> </td>
         <td><a th:href="@{/finishedProject/delete/{projectName}(projectName=${project.getProjectName()})}">
