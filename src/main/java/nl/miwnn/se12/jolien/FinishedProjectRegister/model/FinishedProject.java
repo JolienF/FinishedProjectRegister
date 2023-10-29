@@ -1,5 +1,6 @@
 package nl.miwnn.se12.jolien.FinishedProjectRegister.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,17 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 public class FinishedProject {
+
+    public FinishedProject(String projectName, String finishDate, Maker maker) {
+        this.projectName = projectName;
+        this.finishDate = finishDate;
+        this.maker = maker;
+    }
+
+    public FinishedProject() {
+    }
 
     @Id @GeneratedValue
     private Long projectId;

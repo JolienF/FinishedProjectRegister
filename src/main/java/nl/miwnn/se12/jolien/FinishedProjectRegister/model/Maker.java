@@ -1,10 +1,10 @@
 package nl.miwnn.se12.jolien.FinishedProjectRegister.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -29,7 +29,7 @@ public class Maker {
     private String lastName;
 
     @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL)
-    private Set<FinishedProject> finishedProjects;
+    private Set<FinishedProject> finishedProjects = new HashSet<>();
 
     public Maker(String firstName, String infixName, String lastName, String makerEmail) {
         this.firstName = firstName;
