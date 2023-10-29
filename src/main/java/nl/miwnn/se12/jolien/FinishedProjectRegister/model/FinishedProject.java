@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author Jolien Franke <j.franke@st.hanze.nl>
@@ -26,7 +27,8 @@ public class FinishedProject {
     public FinishedProject() {
     }
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long projectId;
     // TODO deze uniek maken per maker
     @Column(nullable = false, unique = true)
@@ -35,4 +37,16 @@ public class FinishedProject {
 
     @ManyToOne
     private Maker maker;
+
+    @ManyToMany
+    private Set<Tool> tools;
+
+    public String getAllToolsDisplayString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Tool tool : tools) {
+            stringBuilder.append(tool.getToolName()).append(", ");
+        }
+
+        return stringBuilder.toString();
+    }
 }
